@@ -1,73 +1,40 @@
 package com.example.quizapp.quiz
 
-import java.io.File
-import java.io.FileNotFoundException
+import android.content.Context
+import com.example.quizapp.R
+import java.io.*
 
-class QuizController()
-{
-    var questions: ArrayList<Question> = ArrayList<Question>()
+class QuizController(var context: Context) {
+    var questions: ArrayList<Question> = ArrayList()
+    var indexer = 0
 
-    init
-    {
-        if(!loadQuestoins("./src/main/resources/testQuestions.csv")) throw FileNotFoundException("could not find file or file invalid")
-    }
-
-    // heart of the class
-    fun doQuiz(numQuestions: Int): Unit
-    {
-        if (numQuestions < 1) return
-
-        this.randomizeQuiz()
-
-        var rightAnswers = 0
-        var indexer = 0
-
-        while (indexer < numQuestions + 1 && indexer < this.questions.size)
-        {
-            println("Question #$indexer")
-            println(this.questions[indexer].question)
-
-            for (i in 0 until questions[indexer].answers.size)
-            {
-                println("${i + 1}. ${questions[indexer].answers[i]}")
-            }
-
-            print("Your answer: ")
-            var ans: String? = readLine()
-
-            if (ans != null)
-            {
-                if (this.questions[indexer].answers[ans.toIntOrNull()!!].equals(this.questions[indexer].rightAnswer)) ++rightAnswers
-            }
-
-            println()
-            ++indexer
+    init {
+        if(!loadQuestions()) {
+            throw FileNotFoundException("could not find file or file invalid")
         }
-
-        println("\nTotal number questions: $indexer\tTotal number of correct answers: $rightAnswers")
+        // randomizeQuiz()
     }
 
     // randomize/shuffles the list
-    fun randomizeQuiz(): Unit { this.questions.shuffle() }
+    public fun randomizeQuiz(): Unit {
+        questions.forEach { it.answers.shuffle() }
+        this.questions.shuffle()
+    }
 
-    private fun loadQuestoins(fileName: String): Boolean
-    {
-        return try
-        {
-            val myFile = File(fileName);
+    private fun loadQuestions(): Boolean {
+        return try {
+            val isReader: InputStream = context.resources.openRawResource(R.raw.questions)
+            val reader = BufferedReader(InputStreamReader(isReader))
 
-            val lines = myFile.readLines()
-
-            myFile.forEachLine {
+            reader.forEachLine {
                 val elements = it.split(",")
-                var answers = ArrayList<String>()
+                val answers = ArrayList<String>()
 
-                for (i in 1 .. elements.size - 2)
-                {
+                for (i in 1 .. elements.size - 2) {
                     answers.add(elements[i])
                 }
 
-                val newQuestion = Question(elements[0], answers, elements[elements.size - 2])
+                val newQuestion = Question(elements[0], answers, elements.last())
                 this.questions.add(newQuestion)
             }
             true;
