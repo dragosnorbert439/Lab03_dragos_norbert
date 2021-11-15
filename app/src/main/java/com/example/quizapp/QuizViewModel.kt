@@ -9,7 +9,8 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
     private val context: Context by lazy { this.getApplication<Application>().applicationContext }
     val quizController = QuizController(context)
     val answeredQuestions = mutableMapOf<Int, Int>()
-    lateinit var userName: String
+    var userName: String = "Player Name"
+    var highScore: Int = 0
 
     fun resetQuiz() {
         quizController.indexer = 0

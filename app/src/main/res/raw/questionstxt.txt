@@ -1,0 +1,100 @@
+What does the !! operator do
+It converts any value to a non-null type and throws an exception if the value is in fact null.
+It returns the left-hand operand if the operand is not null; otherwise it returns the right hand operand.
+It compares two values for identity rather than equality.
+It's the modulo operator in Kotlin, similar to Java's %
+Which is a valid function declaration in Kotlin?
+fun sum(a: Int, b: Int): Int
+int sum(a: Int, b:Int)
+int sum(int a, int b)
+function sum(a: Int, b: Int): Int
+What about Java interoperability?
+Kotlin can easily call Java code and vice versa
+While Kotlin runs on the JVM, it cannot interoperate with Java
+Kotlin provides a compatibility layer for Java interoperability which comes with some cost at runtime
+Kotlin can easily call Java code while Java cannot access code written in Kotlin
+Does Kotlin have primitive data types, such as int, long, float?
+No, not at language level. But the Kotlin compiler makes use of JVM primitives for best performance
+No, Kotlin does not have nor use primitive data types
+Yes, Kotlin is similar to Java in this respect
+Yes, but Kotlin internally always converts them to their non-primitive counterparts
+What is the correct syntax to convert the String "42" to a Long in Kotlin?
+val l: Long = "42".toLong()
+val l: Long = <Long>"42"
+val l: Long = Long.ParseLong("42")
+val l: Long = (Long)"42"
+What is the correct way to declare a variable of integer type in Kotlin?
+var i: Int = 42
+int i = 42
+var i : int = 42
+let i = 42
+What are Kotlin coroutines?
+They provide asynchronous code without thread blocking
+It's Kotlin's term for class methods
+That's how the automatically generated methods hashcode() and equals() in data classes are called
+These are functions which accept other functions as arguments or return them
+What is the difference between val and var in Kotlin?
+Variables declared with val are final, those with var are not
+Variables declared with var are final, those with val are not
+Variables declared with val can only access const members
+var is scoped to the nearest function block and val is scoped to the nearest enclosing block
+Which of these targets does Kotlin currently not support?
+.NET CLR
+JavaScript
+LLVM
+JVM
+What does a data class not offer?
+Automatic conversion from/to JSON
+A generated copy(...) method, to create copies of instances
+Auto-generated hashCode() and equals() methods
+An auto-generated toString() method
+What is Pending Intent in android?
+It will fire at a future point of time.
+It is a kind of an intent
+It is used to pass the data between activities
+None of the Above
+What is broadcast receiver in android?
+It will react on broadcast announcements.
+It will do background functionalities as services.
+It will pass the data between activities.
+None of the Above
+How many broadcast receivers are available in android?
+sendBroadcast(),sendOrderBroadcast(),and sendStickyBroadcast().
+sendIntent()
+onRecieve()
+implicitBroadcast()
+What is JNI in android?
+Java native interface.
+Java network interface
+Java interface
+Image editable tool
+What is breakpoint in android?
+Breaks the execution.
+Breaks the application
+Breaks the development code
+None of the above.
+What is an HTTP client class in android?
+httprequest(get/post) and returns response from the server
+Cookies management
+Authentication management
+None of the above
+What are the JSON elements in android?
+Number, string, boolean, null, array, and object
+integer, boolean
+boolean
+null
+Is it possible activity without UI in android?
+Yes,it's possible
+No, it's not possible
+We can't say
+None of the above
+What is a thread in android?
+Independent dis-patchable unit is called a thread
+Same as services
+Background activity
+Broadcast Receiver
+What are the layouts available in android?
+All of the above
+Linear Layout
+Frame Layout
+Table Layout

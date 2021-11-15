@@ -10,6 +10,20 @@
         <entry key="..\:/Egyetem/Android/Lab05/Lab03_dragos_norbert/app/src/main/res/layout/fragment_question.xml" value="0.25416666666666665" />
         <entry key="..\:/Egyetem/Android/Lab05/Lab03_dragos_norbert/app/src/main/res/layout/fragment_quiz_end.xml" value="0.25416666666666665" />
         <entry key="..\:/Egyetem/Android/Lab05/Lab03_dragos_norbert/app/src/main/res/layout/fragment_quiz_start.xml" value="0.136" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/drawable/ic_listofquestions.xml" value="0.2703125" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/activity_main.xml" value="0.2346014492753623" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_home.xml" value="0.2346014492753623" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_item_details.xml" value="0.264" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_profile.xml" value="0.2346014492753623" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_question.xml" value="0.15670289855072464" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_question_add.xml" value="0.25226449275362317" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_question_list.xml" value="0.264" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_quiz_end.xml" value="0.25416666666666665" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/fragment_quiz_start.xml" value="0.25416666666666665" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/menubar.xml" value="0.25226449275362317" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/nav_header.xml" value="0.25416666666666665" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/layout/recycle_view_item.xml" value="0.4" />
+        <entry key="..\:/Egyetem/Android/Lab06/Lab03_dragos_norbert/app/src/main/res/menu/drawer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Egyetem/Android/QuizApp/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
       </map>
     </option>

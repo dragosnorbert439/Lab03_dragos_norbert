@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.quizapp.databinding.FragmentQuizStartBinding
 
 class QuizStartFragment : Fragment() {
@@ -41,8 +42,8 @@ class QuizStartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // INITIAL FRAGMENT
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragmentHolderFL, this)?.commit()
+        // PLAYER NAME
+        if (viewModel.userName != "Player Name") binding.personNameStart.setText(viewModel.userName)
 
         // CLEAR PREVIOUS QUESTION FRAGMENTS IF THEY EXIST
         for (i in 0 until activity?.supportFragmentManager?.backStackEntryCount!!)
@@ -52,11 +53,7 @@ class QuizStartFragment : Fragment() {
         binding.startButton.setOnClickListener {
             if (binding.personNameStart.length() > 0) {
                 viewModel.userName = binding.personNameStart.text.toString()
-                activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.fragmentHolderFL, QuestionFragment.newInstance())
-                    commit()
-                    addToBackStack(null)
-                }
+                Navigation.findNavController(view).navigate(R.id.action_quizStartFragment_to_questionFragment)
             }
             else {
                 builder.setTitle("Name field empty").setMessage("Please provide a name before continuing.")
@@ -108,4 +105,7 @@ class QuizStartFragment : Fragment() {
             }
         }
     }
+
+
+
 }

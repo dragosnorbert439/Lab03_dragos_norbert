@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.quizapp.databinding.FragmentQuizEndBinding
 import java.lang.StringBuilder
 
@@ -39,7 +40,9 @@ class QuizEndFragment : Fragment() {
 
         // POINTS RESULT
         var points = 0
-        for (i in 0 until viewModel.quizController.questions.size) {
+        var numQuestions = 0
+        if (viewModel.quizController.questions.size < 4) numQuestions = viewModel.quizController.questions.size
+        for (i in 0 until numQuestions) {
             if (viewModel.answeredQuestions[i]!! > -1) {
                 if (viewModel.quizController.questions[i].rightAnswer==
                     viewModel.quizController.questions[i].answers[viewModel.answeredQuestions[i]!!]) {
@@ -47,15 +50,13 @@ class QuizEndFragment : Fragment() {
                 }
             }
         }
+        if (points > viewModel.highScore) viewModel.highScore = points
         binding.quizPointsEndTV.text = StringBuilder(points.toString() + "/" + viewModel.quizController.indexer + " points")
 
         // TRY AGAIN BUTTON
         binding.tryAgainButton.setOnClickListener {
             viewModel.resetQuiz()
-            activity?.supportFragmentManager?.beginTransaction()?.apply {
-                replace(R.id.fragmentHolderFL, QuizStartFragment.newInstance())
-                commit()
-            }
+            Navigation.findNavController(view).navigate(R.id.action_quizEndFragment_to_quizStartFragment)
         }
     }
 
@@ -70,10 +71,11 @@ class QuizEndFragment : Fragment() {
                     .setNegativeButton("Exit") { _: DialogInterface, _: Int -> run { activity?.finish() } }
                     .setPositiveButton("Try again") { _: DialogInterface, _: Int -> run {
                         viewModel.resetQuiz()
+                        /*
                         activity?.supportFragmentManager?.beginTransaction()?.apply {
                             replace(R.id.fragmentHolderFL, QuizStartFragment.newInstance())
                             commit()
-                        }
+                        }*/
                     } }
                     .setNeutralButton("Nothing") { _: DialogInterface, _: Int -> {} }
                 builder.show()

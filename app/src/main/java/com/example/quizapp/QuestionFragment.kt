@@ -1,11 +1,14 @@
 package com.example.quizapp
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.quizapp.databinding.FragmentQuestionBinding
 
 class QuestionFragment : Fragment() {
@@ -25,7 +28,10 @@ class QuestionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentQuestionBinding.inflate(layoutInflater)
+
+        binding.questionHolder.text = viewModel.quizController.questions[index].question
 
         when (viewModel.answeredQuestions[index]) {
             0 -> binding.radioButtonAns1.isChecked = true
@@ -92,19 +98,12 @@ class QuestionFragment : Fragment() {
 
         binding.nextSubmitButton.setOnClickListener {
             viewModel.quizController.indexer += 1
-            if (viewModel.quizController.indexer == viewModel.quizController.questions.size) {
-                activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.fragmentHolderFL, QuizEndFragment.newInstance())
-                    commit()
-                    addToBackStack(null)
-                }
+            if (viewModel.quizController.indexer == viewModel.quizController.questions.size
+                || viewModel.quizController.indexer == 4) {
+                Navigation.findNavController(view).navigate(R.id.action_questionFragment_to_quizEndFragment)
             }
             else {
-                activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.fragmentHolderFL, newInstance())
-                    commit()
-                    addToBackStack(null)
-                }
+                Navigation.findNavController(view).navigate(R.id.action_questionFragment_self)
             }
         }
     }

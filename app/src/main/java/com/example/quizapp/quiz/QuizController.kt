@@ -9,10 +9,9 @@ class QuizController(var context: Context) {
     var indexer = 0
 
     init {
-        if(!loadQuestions()) {
+        if (!loadQuestions()) {
             throw FileNotFoundException("could not find file or file invalid")
         }
-        // randomizeQuiz()
     }
 
     // randomize/shuffles the list
@@ -23,23 +22,34 @@ class QuizController(var context: Context) {
 
     private fun loadQuestions(): Boolean {
         return try {
-            val isReader: InputStream = context.resources.openRawResource(R.raw.questions)
+            val isReader: InputStream = context.resources.openRawResource(R.raw.questionstxt)
             val reader = BufferedReader(InputStreamReader(isReader))
+            val lines = reader.readLines()
 
-            reader.forEachLine {
-                val elements = it.split(",")
-                val answers = ArrayList<String>()
+            var textTemp = ""
+            var answersTemp = arrayListOf<String>()
+            var correctAnswerTemp = ""
 
-                for (i in 1 .. elements.size - 2) {
-                    answers.add(elements[i])
+            for (i in 0..(lines.size - 1)) {
+                if (i % 5 == 0) {
+                    textTemp = lines.get(i)
+                } else {
+                    if (i % 5 == 1) {
+                        answersTemp.add(lines.get(i))
+                        correctAnswerTemp = lines.get(i)
+                    } else {
+                        answersTemp.add(lines.get(i))
+                    }
+                    if (i % 5 == 4) {
+                        questions.add(Question(textTemp, answersTemp, correctAnswerTemp))
+                        answersTemp = arrayListOf<String>()
+                    }
                 }
-
-                val newQuestion = Question(elements[0], answers, elements.last())
-                this.questions.add(newQuestion)
             }
-            true;
+            true
+        } catch (e: FileNotFoundException) {
+            false
         }
-        catch (e: FileNotFoundException) { false }
     }
 }
 
